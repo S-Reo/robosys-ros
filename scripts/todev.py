@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 import rospy
-from std_msgs.msg import Int32
+from std_msgs.msg import String #Int32
+
 
 import subprocess
 def cb(message):
-    num=str(message)
     rospy.loginfo(message.data)
+    num=str(message.data)  
     subprocess.run(['bash','random.bash',num])
+    print(num)
 rospy.init_node('todev')
-sub = rospy.Subscriber('randomget',Int32,cb)
+sub = rospy.Subscriber('randomget',String,cb)
 rospy.spin()
