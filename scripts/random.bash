@@ -3,4 +3,4 @@
 COMENTOUT
 
 #!/bin/bash
-echo $1 > /dev/manyled0
+echo $1 > /dev/led_random0

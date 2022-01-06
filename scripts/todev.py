@@ -1,7 +1,5 @@
-"""
-copyright © 2021 S-Reo (https://github.com/S-Reo) All rights reserved
-"""
 #!/usr/bin/env python3
+#copyright © 2021 S-Reo (https://github.com/S-Reo) All rights reserved
 import rospy
 from std_msgs.msg import String #Int32
 
