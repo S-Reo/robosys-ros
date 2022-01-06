@@ -1,7 +1,6 @@
-/*:wq
-
+/*
  * copyright © 2021 S-Reo (https://github.com/S-Reo) All rights reserved
- * */
+ */
 
 #include <linux/module.h> 
 #include <linux/fs.h>
@@ -12,7 +11,7 @@
 #include <linux/kernel.h>
 
 MODULE_AUTHOR("Reo Sato & Ryuichi Ueda");
-MODULE_DESCRIPTION("driver for Many LED control");
+MODULE_DESCRIPTION("driver for LED Random control");
 MODULE_LICENSE("GPL");
 MODULE_VERSION("0.1");
 
@@ -30,7 +29,7 @@ static void gpio_register_init(void)
 	//gpiaのリマップ
 	gpio_base = ioremap_nocache(0xfe200000, 0xA0);
 	//0-5Highに設定
-	static int led=0, mask0 =0;
+	int led=0, mask0 =0;
 	for(led = 0; led < 6; led++)
 	{
 		
@@ -43,31 +42,29 @@ static void gpio_register_init(void)
 	gpio_base[10] = 0x3F;
 
 }
-static ssize_t manyled_write(struct file*filp, const char* buf, size_t count, loff_t* pos)
+static ssize_t led_random_write(struct file*filp, const char* buf, size_t count, loff_t* pos)
 {
 	char r;
 	if(copy_from_user(&r,buf,sizeof(char)))
 		return -EFAULT;
 
-	if(r!='\n')
+	if(r!='\n')//echoで改行が入力されないようにする
 	{
-	printk("rの中身 : %c",r);
-	//数字入力で値の数0~6個光るi
-	//文字コードが送られてくる
-	u32 num = 0;
-	int cast_return=10;	
-	cast_return = kstrtou32(&r,10,&num);
-	printk("戻り値 : %d, 変換後の値 : %d",cast_return, num);
-	gpio_base[10] = 0x3F;
-	gpio_base[7] = num;
-
-	printk("戻り値 : %d, 変換後の値 : %d",cast_return, num);
+		u32 num = 0;
+		int cast_return=10;
+		//文字型の数値を数値型に変換	
+		cast_return = kstrtou32(&r,10,&num);
+		//gpio出力をクリア
+		gpio_base[10] = 0x3F;
+		//gpio出力に、取得した値を代入
+		gpio_base[7] = num;
+		//printk("戻り値 : %d, 変換後の値 : %d",cast_return, num);
 	}
 	return 1;
 }
-static struct file_operations manyled_fops = {
+static struct file_operations led_random_fops = {
 	.owner = THIS_MODULE,
-	.write = manyled_write,
+	.write = led_random_write,
 };
 
 //insmodされたときに、module_initから呼び出される
@@ -82,7 +79,7 @@ static int __init init_mod(void)//カーネルモジュールの初期化
 	}
 	printk(KERN_INFO "%s is loaded. major:%d\n", __FILE__,MAJOR(dev));
 	
-	cdev_init(&cdv, &manyled_fops);
+	cdev_init(&cdv, &led_random_fops);
 	retval = cdev_add(&cdv, dev, 1);
 	if(retval < 0){
 		printk(KERN_ERR "cdev_add failed. major:%d, minor:%d", MAJOR(dev), MINOR(dev));

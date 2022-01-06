@@ -35,11 +35,11 @@ __used __section(__versions) = {
 	{ 0x92f847a3, "__class_create" },
 	{ 0x21872aaa, "cdev_add" },
 	{ 0xe7bd1d8b, "cdev_init" },
-	{ 0xe3ec2f2b, "alloc_chrdev_region" },
-	{ 0x3b6c41ea, "kstrtouint" },
 	{ 0xc5850110, "printk" },
+	{ 0xe3ec2f2b, "alloc_chrdev_region" },
 	{ 0xdecd0b29, "__stack_chk_fail" },
 	{ 0xd697e69a, "trace_hardirqs_on" },
+	{ 0x3b6c41ea, "kstrtouint" },
 	{ 0x12a4e128, "__arch_copy_from_user" },
 	{ 0xec3d2e1b, "trace_hardirqs_off" },
 	{ 0x3d8560e4, "cpu_hwcaps" },
@@ -51,4 +51,4 @@ __used __section(__versions) = {
 MODULE_INFO(depends, "");
 
 
-MODULE_INFO(srcversion, "3F81AFEFDCABA16D08F67E3");
+MODULE_INFO(srcversion, "79D503C219D81FDD5DC9788");
