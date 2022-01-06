@@ -2,7 +2,7 @@
 ロボットシステム学において製作したROS関連のリポジトリ
 
 ### ライセンス  
-  GPL (v3.0)
+  BSD
 ### 著作者    
   [S-Reo](https://github.com/S-Reo) + [ryuichiueda](https://github.com/ryuichiueda)
 ## できること
