@@ -31,13 +31,15 @@ make
 3. sudo mknod /dev/manyled0 c 507 0
 4. sudo chmod 666 /dev/manyled0
 
+[後処理] 
+sudo rmmod manyled6
+
 ### robosys-ros側
-1. cd mypkg/roscore
-7. rosrun mypkg randomout.py
-8. rosrun mypkg todeb.py
-9. ledが0~9のランダムなビットで光る
-10. 
-11. sudo rmmod manyled6 (後処理)
+1. roscoreを実行しておく
+2. cd scripts
+3. rosrun mypkg randomout.py
+4. rosrun mypkg todeb.py
+5. ledが0~9のランダムなビットで光る
 
 
 /*copyright © 2021 S-Reo (https://github.com/S-Reo) All rights reserved*/
