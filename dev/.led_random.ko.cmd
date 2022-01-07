@@ -1,1 +1,0 @@
-cmd_/home/ubuntu/catkin_ws/src/mypkg/dev/led_random.ko := ld -r  -EL  -maarch64elf  --build-id  -T ./scripts/module-common.lds -T ./arch/arm64/kernel/module.lds -o /home/ubuntu/catkin_ws/src/mypkg/dev/led_random.ko /home/ubuntu/catkin_ws/src/mypkg/dev/led_random.o /home/ubuntu/catkin_ws/src/mypkg/dev/led_random.mod.o;  true
