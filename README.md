@@ -4,7 +4,7 @@
 ### ライセンス  
   **デバイスドライバ(dev以下)** : GPL(3.0)
   
-  **ROS関連(dev以外)** : BSD
+  **ROS関連(led_random以下)** : BSD
   
 ### 著作者    
   [S-Reo](https://github.com/S-Reo) + [ryuichiueda](https://github.com/ryuichiueda)
